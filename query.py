@@ -12,21 +12,16 @@ import pprint
 import sys
 from googleapiclient.discovery import build
 
-def query():
-    cse = createCSE()
+def query(cse, precision, query):
     res = cse.execute()
     yesItems, noItems = displayRes(res)
     return yesItems, noItems
 
-def createCSE():
-    precision = sys.argv[1]
-    query = sys.argv[2]
+def createCSE(precision, query):
     print("Parameters:\n" + "Query\t\t= " + query + "\nPrecision\t= " + precision)
-    #service = build("customsearch", "v1", developerKey="AIzaSyCqDEnJkCFVYJ2aF94ntsuEwUu1ofZRTLs")
     service = build("customsearch", "v1",
-            developerKey="AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms")
-    #cse = service.cse().list(q=query, cx="009287071471840412963:zpb5-fjffom")
-    cse = service.cse().list(q=query, cx="006096712590953604068:qoxtr78cjow")
+            developerKey="")
+    cse = service.cse().list(q=query, cx="")
     return cse
 
 def displayRes(res):
@@ -48,11 +43,30 @@ def displayRes(res):
             noItems.append(item)
     return yesItems, noItems
 
+def start():
+
 def main():
     # Build a service object for interacting with the API. Visit
     # the Google APIs Console <http://code.google.com/apis/console>
     # to get an API key for your own application.
-    yesItems, noItems = query()
+    precision = sys.argv[1]
+    query = sys.argv[2]
+    cse = createCSE(precision, query)
+    
+    yesItems, noItems = query(cse, precision, query)
+    evaluate(yesItems, noItems)
+    print("Target precision: ", precision)
+    print("Achieved precision: ", len(yesItems))
+    if(len(yesItems) >= precision):
+        print("Precision achieved. Stopping")
+        return
+    elif(len(yesItems) == 0):
+        print("No relevant documents. Stopping")
+        return
+    else:
+        print("Perfoming next iteration")
+        updateQuery(precision, query)
+        
 
 if __name__ == '__main__':
    main()
