@@ -30,6 +30,7 @@ Rashad Barghouti, rb3074
 - engine Id:    009287071471840412963:zpb5-fjffom
 
 ## How to run
+
 The project's implementation has a dependency on Python 3 and associated
 packages. All, along with instructions for installation on the Google VM, are
 listed in the next section. 
@@ -37,7 +38,7 @@ listed in the next section.
 To run the program, uncompress the file `group33-proj1.tar.gz` inside a working
 directory on the VM. This is a sample command to do so:
 
-``bash
+```bash
 $ tar xvf group33-proj1.tar.gz
 ```
 
@@ -48,7 +49,8 @@ follows:
 $ python3 query.py <google api key> <google engine id> <precision> <query>
 ```
 ## Dependencies
-*   **Python3**. Should be already part of Ubuntu's VM. To check run
+*   **Python3**. Should be already installed on the VM as part of the Ubuntu
+    image. To check, run the following command
 
     ```bash
     which python3       
@@ -62,7 +64,8 @@ $ python3 query.py <google api key> <google engine id> <precision> <query>
     sudo apt-get update
     sudo apt-get install python3.6
     ```
-*   **NLTK**. To install, run the following command in a terminal window:
+*   **NLTK**. To install this toolkit, run the following command in a terminal
+    window:
 
     ```bash
     $ sudo -H pip3 install -U nltk 
