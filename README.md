@@ -64,12 +64,35 @@ $ python3 query.py <google api key> <google engine id> <precision> <query>
     sudo apt-get update
     sudo apt-get install python3.6
     ```
+
+*   **Update apt-get**. To install this toolkit, run the following command in a terminal
+    window:
+    
+    ```bash
+    sudo apt-get update
+    ```
+
+*   **pip for Python3**. To install this toolkit, run the following command in a terminal
+    window:
+    
+    ```bash
+    sudo apt-get install python3-pip
+    ```
+
 *   **NLTK**. To install this toolkit, run the following command in a terminal
     window:
 
     ```bash
     $ sudo -H pip3 install -U nltk 
     ```
+
+*   **Google API Python Client for Python3**. To install this toolkit, run the following command in a terminal
+    window:
+    
+    ```bash
+    sudo -H pip3 install --upgrade google-api-python-client
+    ```
+
 *   **wordnet**. To install this toolkit, run the following command in a terminal
     window:
 
