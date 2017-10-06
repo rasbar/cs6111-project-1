@@ -12,12 +12,12 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import RegexpTokenizer
 from googleapiclient.discovery import build
 
-def createCSE(precision, query):
+def createCSE(precision, query, api_key, engine_id):
     print("Parameters:\n" + "Query\t\t= " + query + "\nPrecision\t= " + precision)
     service = build("customsearch", "v1", 
-                    developerKey="AIzaSyCqDEnJkCFVYJ2aF94ntsuEwUu1ofZRTLs")
+                    developerKey=api_key)
     cse = service.cse().list(
-            q=query, cx="009287071471840412963:zpb5-fjffom")
+            q=query, cx=engine_id)
     return cse
 
 def displayRes(res):
@@ -44,15 +44,18 @@ def displayRes(res):
                 print("Invalid input")
     return yesItems, noItems
 
-def start(precision, query, stopWords):
+def start(precision, query, stopWords, api_key, engine_id):
     queryV = []
-    queryV.append(query)
-    cse = createCSE(precision, query)
+    for word in query.split(" "):
+        queryV.append(word)
+    cse = createCSE(precision, query, api_key, engine_id)
     res = cse.execute()
     yesItems, noItems = displayRes(res)
-    evaluate(query, precision, yesItems, noItems, stopWords, queryV)
+    evaluate(query, precision, yesItems, noItems, stopWords, queryV,
+             api_key, engine_id)
 
-def evaluate(query, precision, yesItems, noItems, stopWords, queryV):
+def evaluate(query, precision, yesItems, noItems, stopWords, queryV,
+             api_key, engine_id):
     print("Target precision: ", precision)
     precisionObtained = len(yesItems) / 10;
     print("Achieved precision: ", precisionObtained)
@@ -64,7 +67,8 @@ def evaluate(query, precision, yesItems, noItems, stopWords, queryV):
         return
     else:
         print("Perfoming next iteration")
-        updateQuery(precision, query, yesItems, noItems, stopWords, queryV)
+        updateQuery(precision, query, yesItems, noItems, stopWords, queryV,
+                    api_key, engine_id)
 
 def createVectors(query, yesItems, noItems, stopWords):
     relevantV = dict()
@@ -135,7 +139,8 @@ def rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount):
     print("\n")
     return getTop2Words(sorted_list, queryV)
 
-def updateQuery(precision, query, yesItems, noItems, stopWords, queryV):
+def updateQuery(precision, query, yesItems, noItems, stopWords, queryV,
+                api_key, engine_id):
     relevantV = dict()
     notRelevantV = dict()
     relCount = len(yesItems)
@@ -145,7 +150,7 @@ def updateQuery(precision, query, yesItems, noItems, stopWords, queryV):
     for word in top2:
         query = query + " " + word
     # print(query)
-    start(precision, query, stopWords)
+    start(precision, query, stopWords, api_key, engine_id)
 
 def getStopWords():
     stopWords = []
@@ -156,10 +161,12 @@ def getStopWords():
 
 def main():
     # need to fix query with multiple words, because they would contain spaces
-    precision = sys.argv[1]
-    query = sys.argv[2]
+    api_key = sys.argv[1]
+    engine_id = sys.argv[2]
+    precision = sys.argv[3]
+    query = sys.argv[4]
     stopWords = getStopWords()
-    start(precision, query, stopWords)
+    start(precision, query, stopWords, api_key, engine_id)
 
 if __name__ == '__main__':
    main()
