@@ -13,12 +13,12 @@ from nltk.tokenize import RegexpTokenizer
 from googleapiclient.discovery import build
 
 def createCSE(precision, query, api_key, engine_id):
-    print("Parameters:\n" + 
-    "Client Key\t= " + api_key + 
-    "\nEngine Key\t= " + engine_id + 
-    "\nQuery\t\t= " + query + 
+    print("Parameters:\n" +
+    "Client Key\t= " + api_key +
+    "\nEngine Key\t= " + engine_id +
+    "\nQuery\t\t= " + query +
     "\nPrecision\t= " + precision)
-    service = build("customsearch", "v1", 
+    service = build("customsearch", "v1",
                     developerKey=api_key)
     cse = service.cse().list(
             q=query, cx=engine_id)
@@ -115,7 +115,7 @@ def createVectors(query, yesItems, noItems, stopWords):
     # print("notRelevantV")
     # print(notRelevantV)
     return relevantV, notRelevantV
-    
+
 def getTop2Words(sorted_list, queryV):
     top2 = []
     count = 0
@@ -139,7 +139,7 @@ def rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount):
     for key in relevantV:
         if key in notRelevantV:
             relevantV[key] = max((relevantV[key] - notRelevantV[key]), 0)
-    sorted_list = sorted(list(relevantV.items()), 
+    sorted_list = sorted(list(relevantV.items()),
                          key=operator.itemgetter(1), reverse=True)
     # print("\n")
     # print(sorted_list)
