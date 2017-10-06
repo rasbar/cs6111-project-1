@@ -13,7 +13,11 @@ from nltk.tokenize import RegexpTokenizer
 from googleapiclient.discovery import build
 
 def createCSE(precision, query, api_key, engine_id):
-    print("Parameters:\n" + "Query\t\t= " + query + "\nPrecision\t= " + precision)
+    print("Parameters:\n" + 
+    "Client Key\t= " + api_key + 
+    "\nEngine Key\t= " + engine_id + 
+    "\nQuery\t\t= " + query + 
+    "\nPrecision\t= " + precision)
     service = build("customsearch", "v1", 
                     developerKey=api_key)
     cse = service.cse().list(
@@ -56,6 +60,9 @@ def start(precision, query, stopWords, api_key, engine_id):
 
 def evaluate(query, precision, yesItems, noItems, stopWords, queryV,
              api_key, engine_id):
+    print("======================")
+    print("FEEDBACK SUMMARY")
+    print("Query: ", query)
     print("Target precision: ", precision)
     precisionObtained = len(yesItems) / 10;
     print("Achieved precision: ", precisionObtained)
@@ -94,8 +101,8 @@ def createVectors(query, yesItems, noItems, stopWords):
                 if word not in relevantV:
                     relevantV[word] = 0
                 relevantV[word] += 1
-    print("relevantV")
-    print(relevantV)
+    # print("relevantV")
+    # print(relevantV)
     for item in notRel:
         words = tokenizer.tokenize(item)
         for word in words:
@@ -105,8 +112,8 @@ def createVectors(query, yesItems, noItems, stopWords):
                 if word not in notRelevantV:
                     notRelevantV[word] = 0
                 notRelevantV[word] += 1
-    print("notRelevantV")
-    print(notRelevantV)
+    # print("notRelevantV")
+    # print(notRelevantV)
     return relevantV, notRelevantV
     
 def getTop2Words(sorted_list, queryV):
@@ -123,8 +130,8 @@ def getTop2Words(sorted_list, queryV):
     return top2
 
 def rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount):
-    print("queryV2")
-    print(queryV)
+    # print("queryV2")
+    # print(queryV)
     for key in relevantV:
         relevantV[key] *= (0.75 / relCount)
     for key in notRelevantV:
@@ -134,9 +141,9 @@ def rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount):
             relevantV[key] = max((relevantV[key] - notRelevantV[key]), 0)
     sorted_list = sorted(list(relevantV.items()), 
                          key=operator.itemgetter(1), reverse=True)
-    print("\n")
-    print(sorted_list)
-    print("\n")
+    # print("\n")
+    # print(sorted_list)
+    # print("\n")
     return getTop2Words(sorted_list, queryV)
 
 def updateQuery(precision, query, yesItems, noItems, stopWords, queryV,
@@ -147,9 +154,9 @@ def updateQuery(precision, query, yesItems, noItems, stopWords, queryV,
     notRelCount = len(noItems)
     relevantV, notRelevantV = createVectors(query, yesItems, noItems, stopWords)
     top2 = rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount)
+    print("Augmenting by  " + top2[0] + " " + top2[1])
     for word in top2:
         query = query + " " + word
-    # print(query)
     start(precision, query, stopWords, api_key, engine_id)
 
 def getStopWords():
