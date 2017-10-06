@@ -70,3 +70,11 @@ $ python3 query.py <google api key> <google engine id> <precision> <query>
     ```bash
     $ sudo -H pip3 install -U nltk 
     ```
+*   **wordnet**. To install this toolkit, run the following command in a terminal
+    window:
+
+    ```bash
+    $ python3
+    >>> import nltk
+    >>> nltk.download('wordnet')
+    ```
