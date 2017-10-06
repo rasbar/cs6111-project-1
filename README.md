@@ -4,11 +4,11 @@ Parth Panchmatia, psp2137
 Rashad Barghouti, rb3074
 
 ## Files submitted
-group33-proj1.zip contains:
-- README
-- proj1-stop.txt
-- query.py
-- transcript.txt
+* README
+* transcript.txt
+* group33-proj1.tar.gz
+    * proj1-stop.txt
+    * query.py
 
 ## Internal Design
 - **main** function receives command line args and calls start
@@ -37,7 +37,7 @@ The project's implementation has a dependency on Python 3 and associated
 packages. All, along with instructions for installation on the Google VM, are
 listed in the next section. 
 
-To run the program, uncompress the file `group33-proj1.zip` inside a working
+To run the program, uncompress the file `group33-proj1.tar.gz` inside a working
 directory on the VM.
 
 Inside the project's directory, the project's python module can be run as 
