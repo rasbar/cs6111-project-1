@@ -79,12 +79,14 @@ def evaluate(query, precision, yesItems, noItems, stopWords, queryV,
 
 def createVectors(query, yesItems, noItems, stopWords):
     relevantV = dict()
+    relevantTitleV = dict()
     notRelevantV = dict()
     rel = []
+    relTitle = []
     tokenizer = RegexpTokenizer(r'\w+')
     wordnet_lemmatizer = WordNetLemmatizer()
     for item in yesItems:
-        rel.append(item['title'])
+        relTitle.append(item['title'])
         rel.append(item['snippet'])
     notRel = []
     for item in noItems:
@@ -101,6 +103,17 @@ def createVectors(query, yesItems, noItems, stopWords):
                 if word not in relevantV:
                     relevantV[word] = 0
                 relevantV[word] += 1
+    for item in relTitle:
+        # words = item.split(" ")
+        words = tokenizer.tokenize(item)
+        # words = nltk.word_tokenize(item)
+        for word in words:
+            word = word.lower()
+            word = wordnet_lemmatizer.lemmatize(word)
+            if word not in stopWords:
+                if word not in relevantTitleV:
+                    relevantTitleV[word] = 0
+                relevantTitleV[word] += 1
     # print("relevantV")
     # print(relevantV)
     for item in notRel:
@@ -114,7 +127,7 @@ def createVectors(query, yesItems, noItems, stopWords):
                 notRelevantV[word] += 1
     # print("notRelevantV")
     # print(notRelevantV)
-    return relevantV, notRelevantV
+    return relevantV, notRelevantV, relevantTitleV
 
 def getTop2Words(sorted_list, queryV):
     top2 = []
@@ -129,16 +142,29 @@ def getTop2Words(sorted_list, queryV):
             count += 1
     return top2
 
-def rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount):
-    # print("queryV2")
-    # print(queryV)
+def rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount, relevantTitleV):
+    # print("relevantTitleV")
+    # print(relevantTitleV)
+    # print("relevantV")
+    # print(relevantV)
+    for key in relevantTitleV:
+        relevantTitleV[key] *= (0.65 / relCount)
+        
     for key in relevantV:
         relevantV[key] *= (0.75 / relCount)
     for key in notRelevantV:
         notRelevantV[key] *= (0.15 / notRelCount)
+
+    for key in relevantTitleV: 
+        if key in relevantV:
+            relevantV[key] += relevantTitleV[key]
+        else:
+            relevantV[key] = relevantTitleV[key];
+
     for key in relevantV:
         if key in notRelevantV:
-            relevantV[key] = max((relevantV[key] - notRelevantV[key]), 0)
+            relevantV[key] = max((relevantV[key] - notRelevantV[key]), 0)            
+    
     sorted_list = sorted(list(relevantV.items()),
                          key=operator.itemgetter(1), reverse=True)
     # print("\n")
@@ -149,11 +175,12 @@ def rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount):
 def updateQuery(precision, query, yesItems, noItems, stopWords, queryV,
                 api_key, engine_id):
     relevantV = dict()
+    relevantTitleV = dict()
     notRelevantV = dict()
     relCount = len(yesItems)
     notRelCount = len(noItems)
-    relevantV, notRelevantV = createVectors(query, yesItems, noItems, stopWords)
-    top2 = rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount)
+    relevantV, notRelevantV, relevantTitleV = createVectors(query, yesItems, noItems, stopWords)
+    top2 = rocchio(queryV, relevantV, notRelevantV, relCount, notRelCount, relevantTitleV)
     print("Augmenting by  " + top2[0] + " " + top2[1])
     for word in top2:
         query = query + " " + word
