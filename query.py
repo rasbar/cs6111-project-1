@@ -8,6 +8,7 @@ Created on Sat Sep 30 00:24:35 2017
 
 import operator
 import sys
+from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import RegexpTokenizer
 from googleapiclient.discovery import build
 
@@ -33,7 +34,7 @@ def displayRes(res):
         print("]")
         while(True):
             relevant = input("Relevant (Y/N)?")
-            if(relevant == "Y" or relevant == "y"):
+            if(relevant in ["Y", "y"]):
                 yesItems.append(item)
                 break
             elif(relevant == "N" or relevant == "n"):
@@ -53,11 +54,12 @@ def start(precision, query, stopWords):
 
 def evaluate(query, precision, yesItems, noItems, stopWords, queryV):
     print("Target precision: ", precision)
-    print("Achieved precision: ", len(yesItems))
-    if(len(yesItems) >= int(precision)):
+    precisionObtained = len(yesItems) / 10;
+    print("Achieved precision: ", precisionObtained)
+    if(precisionObtained >= float(precision)):
         print("Precision achieved. Stopping")
         return
-    elif(len(yesItems) == 0):
+    elif(precisionObtained == 0):
         print("No relevant documents. Stopping")
         return
     else:
@@ -67,10 +69,9 @@ def evaluate(query, precision, yesItems, noItems, stopWords, queryV):
 def createVectors(query, yesItems, noItems, stopWords):
     relevantV = dict()
     notRelevantV = dict()
-    relCount = 0
-    notRelCount = 0
     rel = []
     tokenizer = RegexpTokenizer(r'\w+')
+    wordnet_lemmatizer = WordNetLemmatizer()
     for item in yesItems:
         rel.append(item['title'])
         rel.append(item['snippet'])
@@ -84,22 +85,24 @@ def createVectors(query, yesItems, noItems, stopWords):
         # words = nltk.word_tokenize(item)
         for word in words:
             word = word.lower()
+            word = wordnet_lemmatizer.lemmatize(word)
             if word not in stopWords:
                 if word not in relevantV:
                     relevantV[word] = 0
                 relevantV[word] += 1
-                relCount += 1
-    # print("relevantV")
-    # print(relevantV)
+    print("relevantV")
+    print(relevantV)
     for item in notRel:
         words = tokenizer.tokenize(item)
         for word in words:
             word = word.lower()
+            word = wordnet_lemmatizer.lemmatize(word)
             if word not in stopWords:
                 if word not in notRelevantV:
                     notRelevantV[word] = 0
                 notRelevantV[word] += 1
-                notRelCount += 1
+    print("notRelevantV")
+    print(notRelevantV)
     return relevantV, notRelevantV
     
 def getTop2Words(sorted_list, queryV):
