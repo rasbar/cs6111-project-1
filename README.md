@@ -34,7 +34,9 @@ Rashad Barghouti, rb3074
 **Please look into the same.**
 **c) A clear description of how to run your program. Note that your project must compile/run under Ubuntu in a Google Cloud VM. Provide all commands necessary to install the required software and dependencies for your program.**
 This is how I would run it from the command line.
-python query.py  <google api key> <google engine id> <precision> <query>
+````
+python query.py <google api key> <google engine id> <precision> <query>
+````
 
 ## Dependencies
 *   **Python3**. Should be already part of Ubuntu's VM. To check run
