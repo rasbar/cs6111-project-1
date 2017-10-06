@@ -4,9 +4,11 @@ Parth Panchmatia, psp2137
 Rashad Barghouti, rb3074
 
 ## Files submitted
+group33-proj1.zip contains:
 - README
 - proj1-stop.txt
 - query.py
+- transcript.txt
 
 ## Internal Design
 - **main** function receives command line args and calls start
@@ -35,19 +37,16 @@ The project's implementation has a dependency on Python 3 and associated
 packages. All, along with instructions for installation on the Google VM, are
 listed in the next section. 
 
-To run the program, uncompress the file `group33-proj1.tar.gz` inside a working
-directory on the VM. This is a sample command to do so:
-
-```bash
-$ tar xvf group33-proj1.tar.gz
-```
+To run the program, uncompress the file `group33-proj1.zip` inside a working
+directory on the VM.
 
 Inside the project's directory, the project's python module can be run as 
-follows: 
+follows: (Please install dependencies before that)
 
 ```bash
 $ python3 query.py <google api key> <google engine id> <precision> <query>
 ```
+
 ## Dependencies
 *   **Python3**. Should be already installed on the VM as part of the Ubuntu
     image. To check, run the following command
