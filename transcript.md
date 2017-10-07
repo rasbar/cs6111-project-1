@@ -1,23 +1,30 @@
-# Reference implementation output on VM
+## Group33, Project1 — Transcripts of 3 Search Runs
+
+Rashad Barghouti (rb3074)
+Parth Panchmatia (psp2137)
+
+All runs reached precision@10 = 1.0 with the first augmented query. 
+
+### Search Query: 'per se'
+
+Program invocation
+——————————————————
+As mentioned
 
 ```bash
-# ssh to VM
-$ ssh guest-user@35.196.105.51
-
-# password: cs6111
-Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-93-generic x86_64)
+$ rfquery.py @keys 0.9 'per se' 
 ```
 
-## Query: `per se` 
+Output transcript 1
+————————————————————
 
 ```bash
-
-guest-user@cs6111:~$ /home/paparrizos/run "AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms" "006096712590953604068:qoxtr78cjow" 0.9 "per se"
 Parameters:
-Client key  = AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms
-Engine key  = 006096712590953604068:qoxtr78cjow
-Query       = per se
-Precision   = 0.9
+Client key =  AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 
+Engine key =  006096712590953604068:qoxtr78cjow 
+Query      =  per se 
+Precision  =  0.9
+
 Google Search Results:
 ======================
 Result 1
@@ -27,25 +34,22 @@ Result 1
  Summary: Per Se entrance. center. Macadamia nut dipped in chocolate. left. Mini meat filled 
 pastries. right. Per Se Salon. center. Fish and vegetables. right. Oysters and ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 2
 [
- URL: http://www.dictionary.com/browse/per-se
+ URL: www.dictionary.com/browse/per-se
  Title: Per se | Define Per se at Dictionary.com
  Summary: Per se definition, by, of, for, or in itself; intrinsically: This candidate is not a pacifist 
 per se, but he is in favor of peaceful solutions when practicable. See more.
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 3
 [
  URL: https://www.merriam-webster.com/dictionary/perse
  Title: Perse | Definition of Perse by Merriam-Webster
  Summary: Define perse: of a dark grayish blue resembling indigo — perse in a sentence.
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 4
 [
  URL: https://en.wiktionary.org/wiki/per_se
@@ -53,8 +57,7 @@ Result 4
  Summary: Borrowed from Latin per se (“by itself”), from per (“by, through”) and se (“itself, 
 himself, ... Well, that's not correct per se, but the situation is something like that.
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 5
 [
  URL: https://en.wikipedia.org/wiki/Per_se
@@ -62,18 +65,16 @@ Result 5
  Summary: Per se may refer to: per se (Latin), a Latin phrase meaning "by itself" or "in itself". 
 Illegal per se, the legal usage in criminal and anti-trust law; Negligence per se, ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 6
 [
  URL: https://www.yelp.com/biz/per-se-new-york
- Title: Per Se - 3875 Photos & 1287 Reviews - French - 10 Columbus Cir ...
- Summary: 1287 reviews of Per Se "Per Se is the best of the best. I've had the pleasure of 
+ Title: Per Se - 3882 Photos & 1286 Reviews - French - 10 Columbus Cir ...
+ Summary: 1286 reviews of Per Se "Per Se is the best of the best. I've had the pleasure of 
 dining at many of the worlds "Best Restaurants" and Per Se is obvious why they'
 re ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 7
 [
  URL: https://www.nytimes.com/2016/01/13/dining/pete-wells-per-se-review.html
@@ -81,8 +82,7 @@ Result 7
  Summary: Jan 12, 2016 ... Such is Per Se's mystique that I briefly wondered if the failure to bring her a new 
 napkin could have been intentional. The restaurant's identity, to ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 8
 [
  URL: https://www.vocabulary.com/dictionary/per%20se
@@ -90,8 +90,7 @@ Result 8
  Summary: Per se is the phrase to use when you want to refer to a particular thing on its own. 
 It is not this Latin phrase, per se, that is important, but rather the concept it ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 9
 [
  URL: https://en.wikipedia.org/wiki/Per_Se_(restaurant)
@@ -99,8 +98,7 @@ Result 9
  Summary: Per Se is a New American and French restaurant located on the fourth floor of the 
 Time Warner Center at 10 Columbus Circle in Manhattan in New York City, ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 10
 [
  URL: https://www.opentable.com/per-se-reservations-new-york
@@ -108,24 +106,25 @@ Result 10
  Summary: Make a restaurant reservation at Per Se in New York, NY. Select date, time, and 
 party size to find a table.
 ]
+Relevant (Y/N)? y
 
-Relevant (Y/N)?y
-======================
+=================
 FEEDBACK SUMMARY
-Query per se
-Precision 0.5
+Query: per se
+Precision: 0.5
 Still below the desired precision of 0.9
 Indexing results ....
-Indexing results ....
-Augmenting by  restaurant york
+Augmenting by: restaurant york
+Expanded query: per se restaurant york
+
 Parameters:
-Client key  = AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms
-Engine key  = 006096712590953604068:qoxtr78cjow
-Query       = per se restaurant york
-Precision   = 0.9
+Client key =  AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 
+Engine key =  006096712590953604068:qoxtr78cjow 
+Query      =  per se restaurant york 
+Precision  =  0.9
+
 Google Search Results:
 ======================
-
 Result 1
 [
  URL: https://www.thomaskeller.com/perseny
@@ -133,8 +132,7 @@ Result 1
  Summary: Macadamia nut dipped in chocolate. left. Mini meat filled pastries. right. Per Se 
 Salon. center. Fish and vegetables. right. Oysters and Caviar; resting on tapioca ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 2
 [
  URL: https://www.nytimes.com/2016/01/13/dining/pete-wells-per-se-review.html
@@ -142,8 +140,7 @@ Result 2
  Summary: Jan 12, 2016 ... The name Per Se, after all, was chosen to suggest that New York would not 
 simply reflect California's glory; this would be a landmark restaurant ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 3
 [
  URL: https://www.thomaskeller.com/new-york-new-york/per-se/restaurant
@@ -152,27 +149,23 @@ Result 3
 interpretation of The French Laundry in the Time Warner Center at Columbus 
 Circle ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 4
 [
  URL: https://www.opentable.com/per-se
  Title: Per Se Restaurant - New York, NY | OpenTable
- Summary: Book now at Per Se in New York, explore menu, see photos and read 1959 
-reviews: "Marvelous!!!! Amazing food, great service... all that you can imagine and
- ...
+ Summary: Book now at Per Se in New York, explore menu, see photos and read 1964 
+reviews: "Fantastische avond, prachtig gegeten en voortreffelijkebedieni g"
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 5
 [
- URL: https://www.thomaskeller.com/new-york-new-york/per-se/todays-menus
+ URL: https://www.thomaskeller.com/new-york...york/per-se/todays-menus
  Title: Per Se
  Summary: Daily Menus Two tasting menus are offered daily: a nine-course chef's tasting 
 menu as well as a nine-course vegetable tasting menu. No single ingredient is ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 6
 [
  URL: https://en.wikipedia.org/wiki/Per_Se_(restaurant)
@@ -180,61 +173,53 @@ Result 6
  Summary: Per Se is a New American and French restaurant located on the fourth floor of the 
 Time Warner Center at 10 Columbus Circle in Manhattan in New York City, ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 7
 [
- URL: http://www.esquire.com/food-drink/restaurants/news/a41981/per-se-new-york-times-chef-reactions/
+ URL: www.esquire.com/food.../restaurants/.../per-se-new-york-times-chef-reactions /
  Title: Why That Per Se Review May Change Fine Dining Forever
  Summary: Feb 10, 2016 ... Even when it opened in 2004, Per Se recalled an older school of luxury. New 
 York restaurants have been skewing casual since the early 2000s ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 8
 [
- URL: http://www.townandcountrymag.com/leisure/arts-and-culture/a7685/thomas-keller-per-se-new-york-times-review/
+ URL: www.townandcountrymag.com/.../thomas-keller-per-se-new-york-times- review/
  Title: Thomas Keller Responds to New York Times Review of Per Se ...
  Summary: Sep 8, 2016 ... But on January 12 the New York Times had knocked Per Se, his seemingly 
 untouchable restaurant on Columbus Circle in Manhattan, down ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 9
 [
- URL: https://ny.eater.com/2016/1/28/10858508/thomas-keller-per-se-response
+ URL: https://ny.eater.com/2016/1/28/.../thomas-keller-per-se-response
  Title: Keller Responds to Per Se Review: 'We Are Sorry We Let You Down ...
  Summary: Jan 28, 2016 ... The fact that The New York Times restaurant critic Pete Wells' dining experiences 
 at Per Se did not live up to his expectations and to ours is ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 10
 [
- URL: https://www.viamichelin.com/web/Restaurant/New_York-10019-Per_Se-69452-41102
+ URL: https://www.viamichelin.com/.../Restaurant/New_York-10019-Per_Se-69452- 41102
  Title: Per Se - Manhattan : a Michelin Guide restaurant
  Summary: Per Se: Michelin Guide review, users review, type of cuisine, opening times, meal 
 ... Per Se. MICHELIN Guide 2017. 10 Columbus Circle, New York 10019.
 ]
+Relevant (Y/N)? y
 
-Relevant (Y/N)?y
-======================
+=================
 FEEDBACK SUMMARY
-Query per se restaurant york
-Precision 1.0
-Desired precision reached, done
-guest-user@cs6111:~$ 
-```
+Precision: 1.0
+Desired precision reached. Done!
 
-## Query: `brin`
+$ rfquery.py @keys 0.9 brin
 
-```bash
-guest-user@cs6111:~$ /home/paparrizos/run AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 006096712590953604068:qoxtr78cjow 0.9 brin
 Parameters:
-Client key  = AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms
-Engine key  = 006096712590953604068:qoxtr78cjow
-Query       = brin
-Precision   = 0.9
+Client key =  AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 
+Engine key =  006096712590953604068:qoxtr78cjow 
+Query      =  brin 
+Precision  =  0.9
+
 Google Search Results:
 ======================
 Result 1
@@ -245,17 +230,15 @@ Result 1
 internet entrepreneur. Together with Larry Page, he co-founded Google. Brin is 
 the ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 2
 [
- URL: http://www.thefreedictionary.com/brin
+ URL: www.thefreedictionary.com/brin
  Title: Brin - definition of brin by The Free Dictionary
  Summary: Define brin. brin synonyms, brin pronunciation, brin translation, English dictionary 
 definition of brin. n 1. one of two filaments of silk combined by the silkworm to ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 3
 [
  URL: https://play.google.com/store/apps/details?id=io.brin.brin&hl=en
@@ -263,16 +246,14 @@ Result 3
  Summary: Want help to grow your business? Then it's time to download the world's #1 App 
 for business owners, entrepreneurs, senior leaders, executives and start-ups!
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 4
 [
- URL: http://www.davidbrin.com/
+ URL: www.davidbrin.com/
  Title: worlds of David Brin
  Summary: The official website of best-selling science fiction writer and futurist DAVID BRIN.
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 5
 [
  URL: https://en.wiktionary.org/wiki/brin
@@ -280,8 +261,7 @@ Result 5
  Summary: The imported definitions may be significantly out of date, and any more recent 
 senses may be completely missing. (See the entry for brin in Webster's Revised ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 6
 [
  URL: https://brin.ai/
@@ -289,35 +269,31 @@ Result 6
  Summary: Introducing BRiN - Your Personal Business Advisor. Download BRiN today & get 
 instant access to real-time support and hundreds of business education videos.
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 7
 [
  URL: https://www.bloomberg.com/billionaires/profiles/sergey-brin/
  Title: Bloomberg Billionaires Index - Sergey Brin
- Summary: Brin is president of Alphabet, the holding company that owns Google, the world's 
-largest search-engine operator. He co-founded the Mountain View, ...
+ Summary: Overview. Brin is president of Alphabet, the holding company that owns Google, 
+the world's largest search-engine operator. He co-founded the Mountain View, ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 8
 [
- URL: http://sites.usd.edu/brin/
+ URL: sites.usd.edu/brin/
  Title: brin
  Summary: BRIN Project Description: SD BRIN has been funded by the National Center for 
 Research Resources (NIH) since 2001. We have several Cores (proteomics, ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 9
 [
- URL: http://www.businessinsider.com/sergey-brin-resume-stanford-1996-google-2017-9
+ URL: www.businessinsider.com/sergey-brin-resume-stanford-1996-google-2017-9
  Title: Sergey Brin's resume from 1996, 2 years before he cofounded ...
  Summary: Sep 27, 2017 ... Google cofounder Sergey Brin was pursuing a Ph.D. in computer science at 
 Stanford two years before Google was born.
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 10
 [
  URL: https://www.collinsdictionary.com/dictionary/english/brin
@@ -325,21 +301,23 @@ Result 10
  Summary: Brin definition: one of two filaments of silk combined by the silkworm to form a 
 strand of silk | Meaning, pronunciation, translations and examples.
 ]
+Relevant (Y/N)? n
 
-Relevant (Y/N)?n
-======================
+=================
 FEEDBACK SUMMARY
-Query brin
-Precision 0.3
+Query: brin
+Precision: 0.3
 Still below the desired precision of 0.9
 Indexing results ....
-Indexing results ....
-Augmenting by  sergey google
+Augmenting by: sergey google
+Expanded query: brin sergey google
+
 Parameters:
-Client key  = AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms
-Engine key  = 006096712590953604068:qoxtr78cjow
-Query       = brin sergey google
-Precision   = 0.9
+Client key =  AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 
+Engine key =  006096712590953604068:qoxtr78cjow 
+Query      =  brin sergey google 
+Precision  =  0.9
+
 Google Search Results:
 ======================
 Result 1
@@ -349,45 +327,40 @@ Result 1
  Summary: Sergey Mikhaylovich Brin is a Russian-born American computer scientist and 
 internet entrepreneur. Together ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 2
 [
- URL: http://www.businessinsider.com/sergey-brin-google-alphabet-life-photos-2016-12
+ URL: www.businessinsider.com/sergey-brin-google-alphabet-life-photos-2016-12
  Title: Sergey Brin: The life of Google's cofounder, Alphabet's president ...
  Summary: Dec 24, 2016 ... Sergey Brin cofounded Google with Larry Page and now serves as the president 
 of Alphabet. Here's a look at how he got to where he is today.
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 3
 [
- URL: https://www.cnbc.com/2017/05/31/google-larry-page-and-sergey-brin-ask-an-unusual-interview-question.html
+ URL: https://www.cnbc.com/.../google-larry-page-and-sergey-brin-ask-an-unusual- interview-question.html
  Title: Google's Larry Page and Sergey Brin ask an unusual interview ...
  Summary: May 31, 2017 ... If you ever landed a job interview at Google with co-founders Larry Page and 
 Sergey Brin, you'd expect the questions to be difficult.
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 4
 [
- URL: https://www.theverge.com/2017/1/28/14428262/google-sergey-brin
- Title: Google co-founder Sergey Brin joins protest against immigration ...
- Summary: Jan 28, 2017 ... Sergey Brin, Google co-founder and president of Alphabet, joined protesters at 
-San Francisco International Airport tonight as demonstrators ...
-]
-
-Relevant (Y/N)?y
-Result 5
-[
- URL: https://www.vanityfair.com/style/2014/04/sergey-brin-amanda-rosenberg-affair
+ URL: https://www.vanityfair.com/.../sergey-brin-amanda-rosenberg-affair
  Title: Sergey Brin and Amanda Rosenberg: Inside the Google Co ...
  Summary: The story behind Google co-founder Sergey Brin's liaison with Google Glass 
 marketing manager Amanda Rosenberg—and his split from his wife, genetic-
 testing ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
+Result 5
+[
+ URL: https://www.theverge.com/2017/1/28/.../google-sergey-brin
+ Title: Google co-founder Sergey Brin joins protest against immigration ...
+ Summary: Jan 28, 2017 ... Sergey Brin, Google co-founder and president of Alphabet, joined protesters at 
+San Francisco International Airport tonight as demonstrators ...
+]
+Relevant (Y/N)? y
 Result 6
 [
  URL: https://www.ted.com/talks/sergey_brin_why_google_glass
@@ -395,8 +368,7 @@ Result 6
  Summary: It's not a demo, more of a philosophical argument: Why did Sergey Brin and his 
 team at Google want to build an eye-mounted camera/computer, codenamed ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 7
 [
  URL: https://www.forbes.com/profile/sergey-brin/
@@ -404,8 +376,7 @@ Result 7
  Summary: Brin works as president of tech giant Alphabet, the parent firm of Google. He 
 previously ran the secretive Google X division, which made the ill-fated Google ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 8
 [
  URL: https://www.ted.com/talks/sergey_brin_and_larry_page_on_google
@@ -413,8 +384,7 @@ Result 8
  Summary: Google co-founders Larry Page and Sergey Brin offer a peek inside the Google 
 machine, sharing tidbits about international search patterns, the philanthropic ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 9
 [
  URL: https://www.biography.com/people/sergey-brin-12103333
@@ -422,34 +392,29 @@ Result 9
  Summary: Nov 2, 2016 ... Sergey Brin is the man who created the world's most popular search engine, 
 Google, with Larry Page in 1998. Learn more about his life and ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 10
 [
- URL: https://www.weforum.org/agenda/2017/01/google-sergey-brin-i-didn-t-see-ai-coming/
+ URL: https://www.weforum.org/.../google-sergey-brin-i-didn-t-see-ai-coming/
  Title: Sergey Brin: I didn't see AI coming | World Economic Forum
  Summary: Jan 19, 2017 ... Sergey Brin tells Davos participants that he did not foresee the rise of machine 
 learning, ... Sergey Brin, co-founder of Google, at Davos 2017.
 ]
+Relevant (Y/N)? y
 
-Relevant (Y/N)?y
-======================
+=================
 FEEDBACK SUMMARY
-Query brin sergey google
-Precision 1.0
-Desired precision reached, done
-guest-user@cs6111:~$ 
-```
+Precision: 1.0
+Desired precision reached. Done!
 
-## Query: `jaguar`
+$ rfquery.py @keys 0.9 'jaguar'
 
-```bash
-guest-user@cs6111:~$ /home/paparrizos/run AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 006096712590953604068:qoxtr78cjow 0.9 jaguar
 Parameters:
-Client key  = AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms
-Engine key  = 006096712590953604068:qoxtr78cjow
-Query       = jaguar
-Precision   = 0.9
+Client key =  AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 
+Engine key =  006096712590953604068:qoxtr78cjow 
+Query      =  jaguar 
+Precision  =  0.9
+
 Google Search Results:
 ======================
 Result 1
@@ -459,8 +424,28 @@ Result 1
  Summary: The official home of Jaguar USA. Explore our luxury sedans, SUVs and sports 
 cars. Build Yours, Schedule a Test Drive or Find a Dealer Near You.
 ]
+Relevant (Y/N)? ^C
+<Ctrl-C> detected. Terminating.
 
-Relevant (Y/N)?n
+rasbar@mintmate-pc:~/coursework/c6111/project-1
+$ rfq @keys 0.9 'jaguar'
+
+Parameters:
+Client key =  AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 
+Engine key =  006096712590953604068:qoxtr78cjow 
+Query      =  jaguar 
+Precision  =  0.9
+
+Google Search Results:
+======================
+Result 1
+[
+ URL: https://www.jaguarusa.com/index.html
+ Title: Jaguar USA: Jaguar Sedans, SUVs & Sports Cars - Official Site
+ Summary: The official home of Jaguar USA. Explore our luxury sedans, SUVs and sports 
+cars. Build Yours, Schedule a Test Drive or Find a Dealer Near You.
+]
+Relevant (Y/N)? n
 Result 2
 [
  URL: https://en.wikipedia.org/wiki/Jaguar
@@ -468,8 +453,7 @@ Result 2
  Summary: The jaguar (Panthera onca) is a big cat, a feline in the Panthera genus, and is the 
 only extant Panthera species native to the Americas. The jaguar is the ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 3
 [
  URL: https://www.jaguarusa.com/build-yours/index.html
@@ -477,8 +461,7 @@ Result 3
  Summary: Build your Jaguar sport luxury vehicle today. Choose from XE, XF, F-PACE or 
 other models designed to fit your lifestyle and personal taste.
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 4
 [
  URL: https://en.wikipedia.org/wiki/Jaguar_Cars
@@ -486,171 +469,161 @@ Result 4
  Summary: Jaguar is the luxury vehicle brand of Jaguar Land Rover, a British multinational 
 car manufacturer with its headquarters in Whitley, Coventry, England, owned by ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 5
 [
- URL: http://www.jaguars.com/
+ URL: www.jaguars.com/
  Title: Jacksonville Jaguars, Official Site of the Jacksonville Jaguars
- Summary: Senior writer John Oehser and senior correspondent Brian Sexton break down 
-three Jaguars keys for Sunday's game against the Pittsburgh Steelers at Heinz ...
+ Summary: Jaguars WRs Marqise Lee, Jaelen Strong listed as questionable for Sunday's 
+game against the Steelers at Heinz Field in Pittsburgh, Pennsylvania ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 6
 [
- URL: http://www.defenders.org/jaguar/basic-facts
+ URL: www.defenders.org/jaguar/basic-facts
  Title: Jaguar | Basic Facts About Jaguars | Defenders of Wildlife
  Summary: The jaguar is the largest cat in the Americas. The jaguar has a compact body, a 
 broad head and powerful jaws. Its coat is normally yellow and tan, but the color ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 7
 [
- URL: http://www.espn.com/nfl/team/_/name/jax/jacksonville-jaguars
- Title: Jacksonville Jaguars Football - Jaguars News, Scores, Stats ...
- Summary: We're a quarter of the way through the NFL season, and the Jaguars are off to a 2
--2 start. ESPN's FPI projects that the Jags will finish above .500 for the first time ...
+ URL: www.nfl.com/teams/jacksonvillejaguars/profile?team=JAX
+ Title: Jacksonville Jaguars Team Page at NFL.com
+ Summary: Visit the Jaguars' official website for your daily fix of team information. ... 
+Jacksonville Jaguars rookie running back Leonard Fournette is already drawing 
+high ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
 Result 8
-[
- URL: http://www.jaguarusa.com/certified-preowned/index.html
- Title: Certified Pre-Owned Program Benefits | Jaguar USA
- Summary: Learn about the benefits of the Jaguar Certified Pre-Owned Vehicle Program, 
-including a rigorous inspection and warranty information.
-]
-
-Relevant (Y/N)?n
-Result 9
 [
  URL: https://www.youtube.com/user/JaguarCarsLimited
  Title: Jaguar - YouTube
  Summary: Since the first Jaguar car was produced in 1935 we have pushed the boundaries 
 of what is possible. We've always believed that a car is the closest thing you ...
 ]
-
-Relevant (Y/N)?n
+Relevant (Y/N)? n
+Result 9
+[
+ URL: www.jaguarusa.com/certified-preowned/index.html
+ Title: Certified Pre-Owned Program Benefits | Jaguar USA
+ Summary: Learn about the benefits of the Jaguar Certified Pre-Owned Vehicle Program, 
+including a rigorous inspection and warranty information.
+]
+Relevant (Y/N)? n
 Result 10
 [
- URL: https://www.edmunds.com/jaguar/
- Title: Jaguar Reviews - Jaguar Cars | Edmunds
- Summary: Jaguar cars: research Jaguar cars, read Jaguar reviews, find Jaguar car listings 
-and get Jaguar pricing & dealer quotes.
+ URL: https://www.merriam-webster.com/dictionary/jaguar
+ Title: Jaguar | Definition of Jaguar by Merriam-Webster
+ Summary: Define jaguar: a large cat (Panthera onca) chiefly of Central and South America 
+that is larger and stockier than the leopard and is brownish yellow…
 ]
+Relevant (Y/N)? y
 
-Relevant (Y/N)?n
-======================
+=================
 FEEDBACK SUMMARY
-Query jaguar
-Precision 0.2
+Query: jaguar
+Precision: 0.3
 Still below the desired precision of 0.9
 Indexing results ....
-Indexing results ....
-Augmenting by  cat americas
+Augmenting by: panthera cat
+Expanded query: jaguar panthera cat
+
 Parameters:
-Client key  = AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms
-Engine key  = 006096712590953604068:qoxtr78cjow
-Query       = jaguar cat americas
-Precision   = 0.9
+Client key =  AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms 
+Engine key =  006096712590953604068:qoxtr78cjow 
+Query      =  jaguar panthera cat 
+Precision  =  0.9
+
 Google Search Results:
 ======================
 Result 1
 [
- URL: https://en.wikipedia.org/wiki/Jaguar
- Title: Jaguar - Wikipedia
- Summary: Among the Andean cultures, a jaguar cult disseminated by ... the jaguar was 
-considered a sacred animal and during ...
+ URL: https://www.panthera.org/cat/jaguar
+ Title: Jaguar
+ Summary: The jaguar is the largest wild cat in the Western Hemisphere. Although jaguar 
+populations are abundant in some areas, many are threatened by illegal hunting,
+ ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 2
 [
- URL: https://www.biologicaldiversity.org/news/press_releases/2016/jaguar-02-03-2016.html
- Title: New Video Shows America's Only Known Wild Jaguar
- Summary: Feb 3, 2016 ... New Video Shows America's Only Known Wild Jaguar ... released video of the 
-jaguar, and it comes at a critical point in this cat's conservation.
+ URL: https://en.wikipedia.org/wiki/Jaguar
+ Title: Jaguar - Wikipedia
+ Summary: The jaguar (Panthera onca) is a big cat, a feline in the Panthera genus, and is the 
+only extant Panthera species native to the Americas. The jaguar is the ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 3
 [
- URL: http://www.smithsonianmag.com/smart-news/only-known-jaguar-america-finally-caught-video-180958060/
- Title: The Only Known Jaguar in America Was Finally Caught on Video ...
- Summary: Feb 5, 2016 ... Jaguars once ranged all the way from Argentina to parts of Louisiana and 
-California. However, during the last 100 years the big cats almost ...
+ URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1570911/
+ Title: Hyoid apparatus and pharynx in the lion (Panthera leo), jaguar ...
+ Summary: Structures of the hyoid apparatus, the pharynx and their topographical positions 
+in the lion, tiger, jaguar, cheetah and domestic cat were described in order to ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 4
 [
- URL: https://www.livescience.com/27301-jaguars.html
- Title: Fun Facts About Jaguars
- Summary: Sep 21, 2017 ... Jaguars are the biggest cats in the Americas and the third largest cats in the 
-world, according to Defenders of Wildlife. From head to flank, these ...
+ URL: https://en.wikipedia.org/wiki/Black_panther
+ Title: Black panther - Wikipedia
+ Summary: A black panther is the melanistic color variant of any big cat species. Black 
+panthers in Asia and ... Melanism. Melanism in the jaguar (Panthera onca) is 
+conferred by a dominant allele, and in the leopard (Panthera pardus) by a 
+recessive allele.
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 5
 [
- URL: http://www.defenders.org/jaguar/basic-facts
+ URL: https://www.ncbi.nlm.nih.gov/pubmed/12363272
+ Title: Hyoid apparatus and pharynx in the lion (Panthera leo), jaguar ...
+ Summary: Hyoid apparatus and pharynx in the lion (Panthera leo), jaguar (Panthera onca), 
+tiger (Panthera tigris), cheetah (Acinonyxjubatus) and domestic cat (Felis ...
+]
+Relevant (Y/N)? y
+Result 6
+[
+ URL: www.defenders.org/jaguar/basic-facts
  Title: Jaguar | Basic Facts About Jaguars | Defenders of Wildlife
  Summary: The jaguar is the largest cat in the Americas. The jaguar has a compact body, a 
 broad head and powerful jaws. Its coat is normally yellow and tan, but the color ...
 ]
-
-Relevant (Y/N)?y
-Result 6
-[
- URL: https://www.youtube.com/watch?v=kjzkSHH8LqE
- Title: Jaguar - The Big Cat of Americas!!! - YouTube
- Summary: Oct 21, 2016 ... In this clip you will see jaguar hunting caimans,capybaras,turtles,anacondas,
-antelope. The jaguar is the third-largest feline after the tiger and ...
-]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 7
 [
- URL: http://www.nationalgeographic.com/animals/mammals/j/jaguar/
- Title: Jaguar | National Geographic
- Summary: Jaguars are the largest of South America's big cats. They once roamed from the 
-southern tip of that continent north to the region surrounding the U.S.-Mexico ...
+ URL: wildcatsmagazine.nl/wild-cats/jaguar-panthera-onca/
+ Title: Jaguar (Panthera Onca) - Wild Cats Magazine
+ Summary: The jaguar is one of the big cats in the Panthera genus.. It is the only Panthera 
+found in the Americas. The jaguar is the third-largest big cat (feline) after the tiger
+ ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 8
 [
- URL: https://www.economist.com/news/americas/21717415-if-big-cats-dont-kill-livestock-farmers-wont-shoot-them-breeding-cows-can-defend
- Title: Breeding cows that can defend themselves against jaguars
- Summary: Feb 23, 2017 ... That practice is endangering the cats' survival. ... Esteban Payán, who directs 
-Panthera's operations in northern South America, chose San ...
+ URL: news.nationalgeographic.com/.../150116-black-animals-cats-leopards-science -jaguars-genetics/
+ Title: What's a Black Panther, Really?
+ Summary: Jan 17, 2015 ... It's not a separate species, but rather a big cat with a gene that produces ... A 
+black jaguar (Panthera onca) crouches in a pool of water in Brazil.
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 9
 [
- URL: http://www.slate.com/articles/video/video/2016/02/watch_the_only_wild_jaguar_in_the_us_roam_the_santa_rita_mountains.html
- Title: A Rare Glimpse of America's Only Wild Jaguar
- Summary: Feb 5, 2016 ... The only known wild jaguar in the United States made a rare, unwitting ... in front 
-of the cameras last fall, and he's one good-looking cat. The ...
+ URL: www.arkive.org/jaguar/panthera-onca/
+ Title: Jaguar videos, photos and facts - Panthera onca | Arkive
+ Summary: The jaguar (Panthera onca) is the largest cat of the Americas and a formidable 
+predator. Its common name comes from the native Indian name 'yaguara', ...
 ]
-
-Relevant (Y/N)?y
+Relevant (Y/N)? y
 Result 10
 [
- URL: https://www.thedailybeast.com/trumps-wall-threatens-last-jaguars-in-the-us
- Title: Trump's Wall Threatens Last Jaguars in the U.S.
- Summary: Jan 17, 2017 ... But a second “big cat” was spotted recently in Southern Arizona and now experts 
-are working to learn more about it. The North American jaguar ...
+ URL: https://www.amazon.com/Jaguar-Panthera-Leopard.../B008R7HR8G
+ Title: Amazon.com: Jaguar (Panthera, Leopard) Prowling Cat Wildlife ...
+ Summary: Amazon.com: Jaguar (Panthera, Leopard) Prowling Cat Wildlife Animal Wall 
+Decor Art Print Poster (16x20): Impact Posters Animals: Posters & Prints.
 ]
+Relevant (Y/N)? y
 
-Relevant (Y/N)?y
-======================
+=================
 FEEDBACK SUMMARY
-Query jaguar cat americas
-Precision 1.0
-Desired precision reached, done
-guest-user@cs6111:~$ 
-```
+Precision: 1.0
+Desired precision reached. Done!
+

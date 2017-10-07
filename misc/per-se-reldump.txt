@@ -30,6 +30,7 @@ Relevant: 5	Nonrelevant: 5
              'pastries. right. Per Se Salon. center. Fish and vegetables. '
              'right. Oysters and\xa0...',
   'title': 'Per Se | Thomas Keller Restaurant Group'},
+
  {'cacheId': 'KhP5qy-NY3oJ',
   'displayLink': 'www.yelp.com',
   'formattedUrl': 'https://www.yelp.com/biz/per-se-new-york',
@@ -444,6 +445,7 @@ Relevant: 5	Nonrelevant: 5
              'to\xa0...',
   'title': "At Thomas Keller's Per Se, Slips and Stumbles - The New York "
            'Times'},
+
  {'cacheId': 'lJrpkhm3jUcJ',
   'displayLink': 'en.wikipedia.org',
   'formattedUrl': 'https://en.wikipedia.org/wiki/Per_Se_(restaurant)',
@@ -470,6 +472,7 @@ Relevant: 5	Nonrelevant: 5
              'Time Warner Center at 10 Columbus Circle in Manhattan in New '
              'York City,\xa0...',
   'title': 'Per Se (restaurant) - Wikipedia'},
+
  {'cacheId': 'AJigTedgJ6wJ',
   'displayLink': 'www.opentable.com',
   'formattedUrl': 'https://www.opentable.com/per-se-reservations-new-york',
