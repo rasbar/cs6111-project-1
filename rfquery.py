@@ -3,107 +3,130 @@
 #
 """Query augmentation using relevance feedback.
 
-CS6111: Project 1, Group 33
-Author 1: Parth
-Author 2: Rashad Barghouti (UNI:rb3074)
+CS6111: Group 33, Project 1
+Authors: Rashad Barghouti (rb3074)
+         Parth Panchmatia (psp2137)
 """
 
 # System imports
 import sys
 import argparse
-from pathlib import Path
-import pprint
+import numpy as np
+from pprint import pprint
 
 # API imports
 from googleapiclient.discovery import build
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
+# Simple data structure to hold and pass program vars
+class RelevanceFeedback:
+    pass
 #——————————————————————————————————————————————————————————————————————————————
 def _main():
     """Program entry point."""
 
-    # Parse cmdline to get program parameters
-    apikey, cseid, precision, query = parse_cmdline()
+    # Create rf data structure
+    rf = RelevanceFeedback()
 
-    print('\nParameters:\nClient key = ', apikey, '\nEngine key = ', cseid,
-            '\nQuery      = ', query, '\nPrecision  = ', precision)
+    # Parse cmdline to get rf.apikey, rf.cseid, rf.target_precision, & rf.query
+    parse_cmdline(rf)
 
-    # Setup search engine with above parameters
-    service = build("customsearch", "v1", developerKey=apikey)
-    cse = service.cse().list(q=query, cx=cseid)
+    # Set up Google's custom search engine with API key
+    rf.service = build("customsearch", "v1", developerKey=rf.apikey)
 
-    # Run the query
-    resdict = cse.execute()
+    # Load stop-words from file
+    with open('stopwords.txt', 'r') as f:
+        stopwords = f.read().split()
 
-    # For fast testing of 'per se' query; remove and uncomment call to
-    # get_rf_data() below
-    #relevant_items = [resdict['items'][0], resdict['items'][5],
-    #                  resdict['items'][6], resdict['items'][8],
-    #                  resdict['items'][9]]
-    # Display search results and get relevance feedback lists
-    relevant_items, nonrelevant_items = get_rf_data(resdict)
-    #pprint.pprint(relevant_items)
+    enable_google_search = True
+    while enable_google_search:
 
-    print('\nRelevant: {}\tNonrelevant: {}\n'.format(len(relevant_items),
-            len(nonrelevant_items)))
+        # Run the query and get relevance feedback
+        process_query(rf, do_search=enable_google_search)
 
-    # Construct document-text list
-    # TODO: try adding title text along with snippet's
-    docs = [item['snippet'] for item in relevant_items]
+        # Disable Google search until explicitly enabled again
+        enable_google_search = False
 
-    # Vectorize query along with results; will remove from docterm matrix after
-    docs.append(query)
+        # Build index from relevant results
+        print("Indexing results ....")
+        docs = [' '.join([d['title'], d['snippet']]) for d in rf.rlvtdocs]
 
-    # Read a minimal stopword list from local file; the vectorizer's list
-    # removes 'per' from query 1
-    from pathlib import Path
-    p = Path('.') / 'minimal-stop-pylist.txt'
-    stopwords = eval(p.read_text())
+        vectorizer = CountVectorizer(stop_words=stopwords)
+        #vectorizer = TfidfVectorizer(stop_words=stopwords)
+        index = vectorizer.fit_transform(docs)
 
-    # Create CountVectorizer object anc construct doc-term matrix/index
-    vectorizer = CountVectorizer(stop_words=stopwords)
-    dtindex = vectorizer.fit_transform(docs)
-    print('Index dims: {}'.format(dtindex.shape))
+        # Get aggregate freq values for the index terms
+        tf = []
+        for m in range(index.shape[1]):
+            tf.append(np.sum(index[:, m]))
 
-    # Set index size to NxM and reference doc vectors and query separately
-    N, M = dtindex.shape
-    qvec = dtindex[N-1]
-    dtindex = dtindex[:N-1]
+        # Pair tf values with their terms and sort them in descending order
+        tf = list(zip(vectorizer.get_feature_names(), tf))
+        tf.sort(key=lambda tup:tup[1], reverse=True)
+        #print('tf: {}'.format(tf))
+
+        # Extract augmentation terms from the top of the sorted tf list.
+        # (Leave original query as a string, as oppsoed to spliting it into a
+        # list object first. That way, the 'in' keyword will work as a limited
+        # stemming tool, e.g., 'jaguar' in 'jaguars' will be True and help
+        # avoid augmenting with the latter.)
+        #
+        augterms = []
+        for term, _ in tf:
+            if term not in rf.query:
+                augterms.append(term)
+            if len(augterms) == 2:
+                break
+
+        if not augterms:
+            print("Cannot find new query expansion terms. Terminating")
+            sys.exit(0)
+
+        print('Augmenting by: {}'.format(' '.join(augterms)))
+        rf.query = ' '.join([rf.query] + augterms)
+        print('Expanded query: {}'.format(rf.query))
+
+        # enable CSE and run another iteration
+        enable_google_search = True
 
 #——————————————————————————————————————————————————————————————————————————————
-def get_rf_data(resdict):
-    """Display query results and get relevance feedback on each.
+def process_query(rf, do_search=False):
+    """Run query and get relevance feedback on each search result.
 
     The function will terminate program execution if any of the following is
     detected:
      (1) fewer than 10 results from the Google search;
      (2) a KeyboardInterrupt exception (Ctrl-C)
-     (3) no relevant results.
+     (3) no relevant results were found.
 
     Arguments:
-    —————————
-    resdict:
-      Dictionary of results as returned by the Google search
-
+    ---------
+    rf        -- RelevanceFeedback data structure
+    do_search -- boolean argument to explicitly enable a search on Google's
+                  CSE (default: False).
     Returns:
-    ———————
-    relevant_items[], nonrelevant_items[]:
-      Tuple of lists that contain relevant and nonrelevant results
+    -------
+    rf.rlvtdocs[] -- list of relevant items from this search iteration
+
     """
 
-    reslen = len(resdict['items'])
+    print('\nParameters:\nClient key = ', rf.apikey,
+        '\nEngine key = ', rf.cseid, '\nQuery      = ', rf.query,
+        '\nPrecision  = ', rf.target_precision)
+
+    # Do the Google search
+    if do_search:
+        rsltdict = rf.service.cse().list(q=rf.query, cx=rf.cseid).execute()
 
     # If fewer than 10 results were returned, terminate
-    if reslen < 10:
-        print('Search returned {} results. Terminating'.format(reslen),
-                file=sys.stderr)
+    if len(rsltdict['items']) < 10:
+        print('Search fewer than 10 results. Terminating', file=sys.stderr)
         sys.exit(1)
 
     print('\nGoogle Search Results:\n======================')
 
-    relevant_items = []
-    nonrelevant_items = []
-    for i, item in enumerate(resdict['items'], start=1):
+    rf.rlvtdocs = []
+    for i, item in enumerate(rsltdict['items'], start=1):
         print('Result {}\n['.format(i))
         print(' URL: {}'.format(item['formattedUrl']))
         print(' Title: {}'.format(item['title']))
@@ -114,31 +137,47 @@ def get_rf_data(resdict):
             while True:
                 answer = input("Relevant (Y/N)? ").lower()
                 if answer == 'y':
-                    relevant_items.append(item)
+                    rf.rlvtdocs.append(item)
                     break;
                 elif answer == 'n':
-                    nonrelevant_items.append(item)
+                    #rf.nonrlvtdocs.append(item)
                     break;
                 else:
                     print('Invalid answer. Try again or Ctrl-C to exit.')
+
         except KeyboardInterrupt:
-            print('<Ctrl-C> detected. Terminating.')
+            print('\n<Ctrl-C> detected. Terminating.')
             sys.exit(0)
 
     # If no relevant items in the results, terminate
-    if not relevant_items:
+    if not rf.rlvtdocs:
         print('No relevant items in the search results. Terminating.')
         sys.exit(0)
 
-    return relevant_items, nonrelevant_items
+    print('\n=================\nFEEDBACK SUMMARY')
+
+    precision = len(rf.rlvtdocs)/10.0
+    if precision < rf.target_precision:
+        print('Query: {}'.format(rf.query))
+        print('Precision: {:.1f}'.format(precision))
+        print('Still below the desired precision of {}'
+                .format(rf.target_precision))
+    else:
+        print('Precision: {:.1f}'.format(precision))
+        print('Desired precision reached. Done!')
+        sys.exit(0)
 
 #——————————————————————————————————————————————————————————————————————————————
-def parse_cmdline():
+def parse_cmdline(rf):
     """Parse command-line.
 
-    Returns:
-    ———————
-    (apikey, cseid, precision, query) -- tuple of parsed cmdline args
+    Input:
+    -----
+    rf -- RelevanceFeedback data structures
+
+    This function parses the command-line and initializes rf.apikey, rf.cseid,
+    rf.precision, rf.query.
+
     """
 
     d = 'Reformulate search query based on explicit relevance feedback.'
@@ -150,21 +189,23 @@ def parse_cmdline():
     parser.add_argument('cseid', nargs=1, metavar='<google engine id>',
             help="Search engine's ID")
     parser.add_argument('precision', nargs=1, metavar='<precision>',
-            help='precision@10 value')
+            help='precision@10 value', type=float)
     parser.add_argument('query', nargs=1, metavar='<query>',
             help='query string in quotes')
 
     # Parse command-line and return
     args = parser.parse_args()
-    return args.apikey[0], args.cseid[0], args.precision[0], args.query[0]
 
-#------------------------------------------------------------------------------
-# If running as a script, call entry point _main()
-#------------------------------------------------------------------------------
+    # Do a sanity check on the value of the desired precision
+    precision = args.precision[0]
+    if not 0.0 < precision <= 1.0:
+        print('Invalid precision@10 value. Must be: 0.0 < precision@10 <= 1.0')
+        sys.exit(0)
+
+    rf.apikey, rf.cseid, = args.apikey[0], args.cseid[0]
+    rf.target_precision, rf.query = precision, args.query[0]
+#——————————————————————————————————————————————————————————————————————————————
+# If running as standalone program, start at _main()
+#——————————————————————————————————————————————————————————————————————————————
 if __name__ == '__main__':
-
-    DEBUG = False
-    if DEBUG:
-        import pdb
-        pdb.set_trace()
     _main()
