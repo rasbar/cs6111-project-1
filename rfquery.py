@@ -4,8 +4,8 @@
 """Query augmentation using relevance feedback.
 
 CS6111: Group 33, Project 1
-Authors: Rashad Barghouti (rb3074)
-         Parth Panchmatia (psp2137)
+Authors : Rashad Barghouti (rb3074)
+          Parth Panchmatia (psp2137)
 """
 
 # System imports
@@ -63,7 +63,7 @@ def _main():
         # Pair tf values with their terms and sort them in descending order
         tf = list(zip(vectorizer.get_feature_names(), tf))
         tf.sort(key=lambda tup:tup[1], reverse=True)
-        #print('tf: {}'.format(tf))
+        print('tf: {}'.format(tf))
 
         # Extract augmentation terms from the top of the sorted tf list.
         # (Leave original query as a string, as oppsoed to spliting it into a
@@ -73,7 +73,8 @@ def _main():
         #
         augterms = []
         for term, _ in tf:
-            if term not in rf.query:
+            #if term not in rf.query and not term.isnumeric():
+            if term not in rf.query and not term.isnumeric():
                 augterms.append(term)
             if len(augterms) == 2:
                 break

@@ -1,6 +1,17 @@
-## Project 1 Group 33
-Rashad Barghouti (rb3074)  
-Parth Panchmatia (psp2137)
+# Project 1 Group 33
+
+*Rashad Barghouti* (rb3074)  
+*Parth Panchmatia* (psp2137)  
+
+- [Project Files]
+- [Dependencies]
+    - [Python3]
+    - [NumPy and SciPy]
+    - [scikit-learn]
+- [Running the Program]
+- [Code Design]
+- [Algorithm and Implementation]
+   - [Additional Remarks]
 
 ### Project Files
 *   `dechi.py` — The implementation of the query expansion in Python 3. 
@@ -112,7 +123,7 @@ To run the implementation, do the following:
 
 The `keys` file is included in `group33-proj1.tar.gz` 
 
-### Code Design and the Query Augmentation Algorithm
+### Code Design 
 
 The code has the following structure and sequence of operation:
 
@@ -190,3 +201,14 @@ non-relevant vector. The implementation is performed as follows:
     'per se' query string. This, however, had no effect, since 'per' remained
     in the original query string, which was appended with the augmentation
     terms.
+*******************************************************************************
+
+[Project Files]: #project-files
+[Dependencies]: #dependencies
+[Python3]: #python3
+[NumPy and SciPy]: #numpy-and-scipy
+[scikit-learn]: #scikit-learn
+[Running the Program]: #running-the-program
+[Code Design]: #code-design
+[Algorithm and Implementation]: #algorithm-and-implementation
+[Additional Remarks]: #additional-remarks
