@@ -124,10 +124,14 @@ def createVectors(query, yesItems, noItems, stopWords):
 def getTop2Words(sorted_list, queryV):
     top2 = []
     count = 0
+    lemmaQueryV = []
+    wordnet_lemmatizer = WordNetLemmatizer()
+    for element in queryV:
+        lemmaQueryV.append(wordnet_lemmatizer.lemmatize(element))
     for key, value in sorted_list:
         if(count == 2):
             break
-        if key not in queryV:
+        if key not in queryV and key not in lemmaQueryV:
             top2.append(key)
             count += 1
     return top2
