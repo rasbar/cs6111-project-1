@@ -1,6 +1,7 @@
 # Ignore the backup and misc directories
 backup/
 misc/
+<<<<<<< HEAD
 jupyter/
 
 # Ignore the 'keys' file 
@@ -10,3 +11,9 @@ transcript.md
 qcompare*
 *.gz
 *.ipynb
+=======
+jupyter
+
+# Ignore the 'keys' file 
+keys
+>>>>>>> 07af843004441fdf02b89d8ff1815575f473642a

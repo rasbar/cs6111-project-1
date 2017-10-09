@@ -22,10 +22,8 @@ def createCSE():
     precision = sys.argv[1]
     query = sys.argv[2]
     print("Parameters:\n" + "Query\t\t= " + query + "\nPrecision\t= " + precision)
-    #service = build("customsearch", "v1", developerKey="AIzaSyCqDEnJkCFVYJ2aF94ntsuEwUu1ofZRTLs")
     service = build("customsearch", "v1",
             developerKey="AIzaSyAlKLHe1eAmug6XeTlQ1DxzOsPI4zax7Ms")
-    #cse = service.cse().list(q=query, cx="009287071471840412963:zpb5-fjffom")
     cse = service.cse().list(q=query, cx="006096712590953604068:qoxtr78cjow")
     return cse
 
