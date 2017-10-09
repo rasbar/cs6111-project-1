@@ -6,3 +6,5 @@ jupyter
 # Ignore the 'keys' file 
 keys
 README.pdf
+qcompare*
+*.gz
