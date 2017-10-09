@@ -1,15 +1,14 @@
 # Ignore the backup and misc directories
 backup/
 misc/
+group33-proj1
 <<<<<<< HEAD
 jupyter/
 
 # Ignore the 'keys' file 
 keys
-README.pdf
 transcript.md
 qcompare*
-*.gz
 *.ipynb
 =======
 jupyter
