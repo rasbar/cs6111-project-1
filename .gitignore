@@ -1,10 +1,12 @@
 # Ignore the backup and misc directories
 backup/
 misc/
-jupyter
+jupyter/
 
 # Ignore the 'keys' file 
 keys
 README.pdf
+transcript.md
 qcompare*
 *.gz
+*.ipynb
